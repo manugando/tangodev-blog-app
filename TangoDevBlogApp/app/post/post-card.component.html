@@ -1,1 +1,1 @@
-<Label class="list-group-item" [text]="post.title"></Label>
+<Label [nsRouterLink]="['/post', post.id]" pageTransition="slide" class="list-group-item" [text]="post.title"></Label>

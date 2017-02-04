@@ -10,11 +10,18 @@ import { PostService } from "./post.service";
 })
 export class PostsComponent implements OnInit {
     posts: Array<Post> = [];
+    currentPage: number;
 
     constructor(private postService: PostService) { }
 
     ngOnInit(): void {
-        this.postService.getPosts()
+        this.currentPage = 0;
+        this.loadMorePost();
+    }
+
+    loadMorePost(): void {
+        this.currentPage = this.currentPage + 1;
+        this.postService.getPosts(this.currentPage)
         .subscribe(loadedPosts => {
             loadedPosts.forEach((post) => {
                 this.posts.push(post);

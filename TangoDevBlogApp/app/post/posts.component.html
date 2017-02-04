@@ -1,7 +1,7 @@
 <ActionBar title="TangoDev Blog" class="action-bar">
 </ActionBar>
 <StackLayout class="page">
-    <ListView [items]="posts" class="list-group">
+    <ListView [items]="posts" class="list-group" (loadMoreItems)="loadMorePost()">
         <template let-item="item">
             <post-card [post]="item"></post-card>
         </template>

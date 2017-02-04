@@ -15,24 +15,31 @@ export class PostService {
         return Observable.throw(error);
     }
 
-    getPosts() {
-        return this.http.get("http://blog.tangodev.it/wp-json/wp/v2/posts?page=1&per_page=2&_embed=1")
+    getPosts(page: Number) {
+        return this.http.get("http://blog.tangodev.it/wp-json/wp/v2/posts?page=" + page + "&per_page=20&_embed=1")
             .map(res => res.json())
             .map(data => {
                 let postList = [];
                 data.forEach((postJson) => {
-                    postList.push(
-                        new Post(
-                            postJson.id, 
-                            postJson.title.rendered, 
-                            postJson.content.rendered)
-                        );
+                    postList.push(this.getPostObjectFromJSON(postJson))
                 });
                 return postList;
             }).catch(this.handleErrors);
     }
 
-    getItem(id: number): Post {
-        return new Post("1", "TITOLO", "TESTO");
+    getPost(id: String) {
+        return this.http.get("http://blog.tangodev.it/wp-json/wp/v2/posts/" + id)
+            .map(res => res.json())
+            .map(postJson => {
+                return this.getPostObjectFromJSON(postJson);
+            }).catch(this.handleErrors);
+    }
+
+    getPostObjectFromJSON(postJson) {
+        let post = new Post();
+        post.id = postJson.id;
+        post.title = postJson.title.rendered;
+        post.content = postJson.content.rendered;
+        return post;
     }
 }
