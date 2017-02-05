@@ -1,9 +1,21 @@
 <ActionBar title="TangoDev Blog" class="action-bar">
+    <NavigationButton icon="res://ic_menu_white_24dp" (tap)=openDrawer()></NavigationButton>
 </ActionBar>
-<StackLayout class="page">
-    <ListView [items]="posts" class="list-group" (loadMoreItems)="loadMorePost()">
-        <template let-item="item">
-            <post-card [post]="item"></post-card>
-        </template>
-    </ListView>
-</StackLayout>
+<RadSideDrawer>
+    <StackLayout tkDrawerContent class="sidedrawer-left">
+        <StackLayout class="sidedrawer-content">
+            <ListView [items]="categories" class="list-group">
+                <template let-item="item">
+                    <Label (tap)="changeCategory(item.id)" [text]="item.name" class="list-group-item"></Label>
+                </template>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout tkMainContent class="page">
+        <ListView [items]="posts" class="list-group" (loadMoreItems)="loadMorePost()">
+            <template let-item="item">
+                <post-card [post]="item"></post-card>
+            </template>
+        </ListView>
+    </StackLayout>
+</RadSideDrawer>

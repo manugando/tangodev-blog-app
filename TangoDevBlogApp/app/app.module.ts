@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { SIDEDRAWER_DIRECTIVES } from "nativescript-telerik-ui/sidedrawer/angular";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
@@ -19,6 +20,7 @@ import { PostCardComponent } from "./post/post-card.component";
         AppRoutingModule
     ],
     declarations: [
+        SIDEDRAWER_DIRECTIVES,
         AppComponent,
         PostsComponent,
         PostDetailComponent,
