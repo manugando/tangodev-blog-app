@@ -1,5 +1,6 @@
-<ActionBar title="Details" class="action-bar"></ActionBar>
+<ActionBar [title]="post.title" class="action-bar">
+    <NavigationButton icon="res://ic_arrow_back_white_24dp" (tap)="goBack()"></NavigationButton>
+</ActionBar>
 <StackLayout orientation="vertical" class="page">
-    <Label class="h2" [text]="post.title"></Label>
-    <HtmlView [html]="post.content"></HtmlView>
+    <WebView [url]="post.url"></WebView>
 </StackLayout>

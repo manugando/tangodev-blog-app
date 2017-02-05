@@ -1,1 +1,4 @@
-<Label [nsRouterLink]="['/post', post.id]" pageTransition="slide" class="list-group-item" [text]="post.title"></Label>
+<StackLayout orientation="vertical" [nsRouterLink]="['/post', post.id]" pageTransition="slide">
+    <Image [src]="post.featuredImageUrl"></Image>
+    <Label class="list-group-item" [text]="post.title"></Label>
+</StackLayout>

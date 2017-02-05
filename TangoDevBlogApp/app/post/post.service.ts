@@ -33,7 +33,7 @@ export class PostService {
     }
 
     getPost(id: String) {
-        return this.http.get("http://blog.tangodev.it/wp-json/wp/v2/posts/" + id)
+        return this.http.get("http://blog.tangodev.it/wp-json/wp/v2/posts/" + id + "?_embed=1")
             .map(res => res.json())
             .map(postJson => {
                 return this.getPostObjectFromJSON(postJson);
@@ -45,6 +45,8 @@ export class PostService {
         post.id = postJson.id;
         post.title = postJson.title.rendered;
         post.content = postJson.content.rendered;
+        post.url = postJson.link;
+        post.featuredImageUrl = postJson["_embedded"]["wp:featuredmedia"][0]["media_details"]["sizes"]["post-image"]["source_url"];
         return post;
     }
 

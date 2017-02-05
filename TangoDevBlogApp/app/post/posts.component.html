@@ -12,10 +12,21 @@
         </StackLayout>
     </StackLayout>
     <StackLayout tkMainContent class="page">
-        <ListView [items]="posts" class="list-group" (loadMoreItems)="loadMorePost()">
-            <template let-item="item">
+        <ActivityIndicator 
+            [busy]="showLoading"
+            visibility="{{ showLoading ? 'visible' : 'collapsed' }}"
+            class="activity-indicator">
+        </ActivityIndicator>
+        <RadListView 
+            [items]="posts" 
+            class="list-group" 
+            pullToRefresh="true" 
+            (pullToRefreshInitiated)="onPullToRefreshInitiated($event)"
+            loadOnDemandMode="Auto" 
+            (loadMoreDataRequested)="onLoadMoreItemsRequested($event)">
+            <template tkListItemTemplate let-item="item" >
                 <post-card [post]="item"></post-card>
             </template>
-        </ListView>
+        </RadListView>
     </StackLayout>
 </RadSideDrawer>

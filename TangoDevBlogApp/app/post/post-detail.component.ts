@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 
 import { Post } from "./post";
 import { PostService } from "./post.service";
@@ -14,6 +15,7 @@ export class PostDetailComponent implements OnInit {
 
     constructor(
         private postService: PostService,
+        private routerExtensions: RouterExtensions,
         private route: ActivatedRoute
     ) { }
 
@@ -24,5 +26,9 @@ export class PostDetailComponent implements OnInit {
         .subscribe(loadedPost => {
             this.post = loadedPost;
         });
+    }
+
+    public goBack() {
+        this.routerExtensions.back();
     }
 }

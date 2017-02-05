@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { SIDEDRAWER_DIRECTIVES } from "nativescript-telerik-ui/sidedrawer/angular";
+import { LISTVIEW_DIRECTIVES } from "nativescript-telerik-ui/listview/angular";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
@@ -21,6 +22,7 @@ import { PostCardComponent } from "./post/post-card.component";
     ],
     declarations: [
         SIDEDRAWER_DIRECTIVES,
+        LISTVIEW_DIRECTIVES,
         AppComponent,
         PostsComponent,
         PostDetailComponent,
